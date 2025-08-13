@@ -1,0 +1,18 @@
+from flask import Flask, request, render_template_string
+
+app = Flask(__name__)
+
+# Homepage route
+@app.route("/")
+def home():
+    return "<h1>Hello, World!</h1><p>Go to /greet?name=YourName</p>"
+
+# Greeting route
+@app.route("/greet")
+def greet():
+    name = request.args.get("name", "Stranger")
+    html = f"<h1>Hello, {name}!</h1>"
+    return html
+
+if __name__ == "__main__":
+    app.run(debug=True)
